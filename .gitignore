@@ -1,0 +1,34 @@
+.DS_Store
+.apexik-private/
+
+# Local caches and generated working files
+.pnpm-store/
+tmp/
+node_modules/
+*.log
+
+# Secrets and machine-specific config
+.env
+*.pem
+*.key
+id_rsa*
+wp-config.php
+*credentials*
+*secret*
+
+# Research/source-material folders not needed for the install package
+output/
+outputs/
+product-concepts/
+reports/
+research/
+store/
+tools/
+产品效果图/
+印刷规格确认图/
+
+# WordPress working evidence, not required for install/restore
+wordpress/qa-*.png
+wordpress/qa-*.html
+wordpress/design-qa.md
+wordpress/sourcing/
