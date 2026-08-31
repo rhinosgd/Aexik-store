@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GRIDLINE_VERSION', '1.7.0' );
+define( 'GRIDLINE_VERSION', '1.8.0' );
 
 function gridline_setup() {
 	load_theme_textdomain( 'gridline-club', get_template_directory() . '/languages' );
