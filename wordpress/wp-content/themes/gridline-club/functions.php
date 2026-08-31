@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * APEXIK theme functions.
  *
@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GRIDLINE_VERSION', '1.9.0' );
+define( 'GRIDLINE_VERSION', '1.9.1' );
 
 function gridline_setup() {
 	load_theme_textdomain( 'gridline-club', get_template_directory() . '/languages' );
@@ -35,12 +35,13 @@ function gridline_setup() {
 add_action( 'after_setup_theme', 'gridline_setup' );
 
 function gridline_assets() {
-	wp_enqueue_style( 'gridline-main', get_template_directory_uri() . '/assets/css/main.css', array(), GRIDLINE_VERSION );
+	wp_enqueue_style( 'gridline-style', get_stylesheet_uri(), array(), GRIDLINE_VERSION );
+	wp_enqueue_style( 'gridline-main', get_template_directory_uri() . '/assets/css/main.css', array( 'gridline-style' ), GRIDLINE_VERSION );
 	wp_enqueue_style( 'gridline-icons', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css', array(), '6.7.2' );
 	wp_enqueue_script( 'gridline-main', get_template_directory_uri() . '/assets/js/main.js', array(), GRIDLINE_VERSION, true );
 	$accent = sanitize_hex_color( get_theme_mod( 'gridline_accent', '#c51d24' ) );
 	$ink    = sanitize_hex_color( get_theme_mod( 'gridline_ink', '#111111' ) );
-	wp_add_inline_style( 'gridline-main', ':root{--gl-accent:' . ( $accent ?: '#c51d24' ) . ';--gl-ink:' . ( $ink ?: '#111111' ) . ';}' );
+	wp_add_inline_style( 'gridline-style', ':root{--gl-accent:' . ( $accent ?: '#c51d24' ) . ';--gl-ink:' . ( $ink ?: '#111111' ) . ';}' );
 }
 add_action( 'wp_enqueue_scripts', 'gridline_assets' );
 
@@ -54,7 +55,7 @@ function gridline_customize( $customizer ) {
 		$customizer->add_setting( $id, array( 'default' => $args['default'], 'sanitize_callback' => 'sanitize_hex_color' ) );
 		$customizer->add_control( new WP_Customize_Color_Control( $customizer, $id, array( 'label' => $args['label'], 'section' => 'gridline_brand' ) ) );
 	}
-	$customizer->add_setting( 'gridline_announcement', array( 'default' => 'FREE US SHIPPING OVER $75 · EASY 30-DAY RETURNS', 'sanitize_callback' => 'sanitize_text_field' ) );
+	$customizer->add_setting( 'gridline_announcement', array( 'default' => 'FREE US SHIPPING OVER $75 路 EASY 30-DAY RETURNS', 'sanitize_callback' => 'sanitize_text_field' ) );
 	$customizer->add_control( 'gridline_announcement', array( 'label' => __( 'Announcement text', 'gridline-club' ), 'section' => 'gridline_brand', 'type' => 'text' ) );
 	$customizer->add_setting( 'gridline_newsletter_action', array( 'default' => '', 'sanitize_callback' => 'esc_url_raw' ) );
 	$customizer->add_control( 'gridline_newsletter_action', array( 'label' => __( 'Newsletter form action URL', 'gridline-club' ), 'description' => __( 'Paste the hosted signup form URL from your email provider. Until configured, the site shows a contact link instead of collecting email addresses.', 'gridline-club' ), 'section' => 'gridline_brand', 'type' => 'url' ) );
@@ -161,9 +162,9 @@ add_action( 'wp_head', 'gridline_structured_data', 30 );
 function gridline_newsletter_capture( $id, $button_label ) {
 	$action = get_theme_mod( 'gridline_newsletter_action', '' );
 	if ( ! $action ) {
-		return '<a class="gl-newsletter-fallback" href="' . esc_url( home_url( '/contact/?topic=new-drops' ) ) . '">' . esc_html__( 'Get drop updates', 'gridline-club' ) . ' <span>→</span></a>';
+		return '<a class="gl-newsletter-fallback" href="' . esc_url( home_url( '/contact/?topic=new-drops' ) ) . '">' . esc_html__( 'Get drop updates', 'gridline-club' ) . ' <span>鈫?/span></a>';
 	}
-	return '<form class="gl-newsletter" action="' . esc_url( $action ) . '" method="post"><label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Email address', 'gridline-club' ) . '</label><input id="' . esc_attr( $id ) . '" name="email" type="email" autocomplete="email" placeholder="' . esc_attr__( 'Email address', 'gridline-club' ) . '" required><button type="submit">' . esc_html( $button_label ) . ' →</button></form>';
+	return '<form class="gl-newsletter" action="' . esc_url( $action ) . '" method="post"><label class="screen-reader-text" for="' . esc_attr( $id ) . '">' . esc_html__( 'Email address', 'gridline-club' ) . '</label><input id="' . esc_attr( $id ) . '" name="email" type="email" autocomplete="email" placeholder="' . esc_attr__( 'Email address', 'gridline-club' ) . '" required><button type="submit">' . esc_html( $button_label ) . ' 鈫?/button></form>';
 }
 
 function gridline_document_title( $title ) {
@@ -393,3 +394,4 @@ function gridline_default_menu() {
 	}
 	echo '</ul>';
 }
+
