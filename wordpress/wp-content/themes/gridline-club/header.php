@@ -8,14 +8,6 @@
 </head>
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<!--
-THESIS: APEXIK turns a Formula 1 race moment into a desk object, refusing the generic car-image merchandise grid.
-OWN-WORLD: Race-control archive: obsidian workbench, bone paper records, Formula1-Bold display type, signal-red timing trace, precise technical marks.
-STORY: A fan recognizes a complete moment, chooses a desk surface, then adds a connected collectible.
-FIRST VIEWPORT: Product-forward desk mat occupies the right field; a large Formula1-Bold promise and direct shop action occupy the left; a red route crosses the frame once.
-FORM: Race Control Archive, existing user-selected direction with red night-trace motion; seed key 7e5d19a3.
-FINISH: unreviewed and undocumented is unfinished; this build ends with the finish review, the verdict, DESIGN.md, and every shipping raster carrying its provenance.
--->
 <a class="gl-skip" href="#main"><?php esc_html_e( 'Skip to content', 'gridline-club' ); ?></a>
 <div class="gl-announcement">
 	<span><?php echo esc_html( get_theme_mod( 'gridline_announcement', 'FREE US SHIPPING OVER $75 · EASY 30-DAY RETURNS' ) ); ?></span>
@@ -55,10 +47,10 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 		<div class="gl-search-panel-top"><p id="gridline-search-title"><?php esc_html_e( 'Find your next grid essential', 'gridline-club' ); ?></p><button type="button" aria-label="<?php esc_attr_e( 'Close product search', 'gridline-club' ); ?>" data-search-close>×</button></div>
 		<form class="gl-search-form" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
 			<label class="screen-reader-text" for="gridline-search-input"><?php esc_html_e( 'Search products', 'gridline-club' ); ?></label>
-			<input id="gridline-search-input" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Desk mat, mouse pad, keychain...', 'gridline-club' ); ?>" autocomplete="off">
+			<input id="gridline-search-input" type="search" name="s" value="<?php echo esc_attr( get_search_query() ); ?>" placeholder="<?php esc_attr_e( 'Quote, hoodie, trackside kit…', 'gridline-club' ); ?>" autocomplete="off">
 			<input type="hidden" name="post_type" value="product">
 			<button type="submit"><?php esc_html_e( 'Search', 'gridline-club' ); ?> <span>→</span></button>
 		</form>
-		<div class="gl-search-suggestions"><span><?php esc_html_e( 'Popular:', 'gridline-club' ); ?></span><a href="<?php echo esc_url( home_url( '/?s=desk+mat&post_type=product' ) ); ?>"><?php esc_html_e( 'Desk mats', 'gridline-club' ); ?></a><a href="<?php echo esc_url( home_url( '/?s=mouse+pad&post_type=product' ) ); ?>"><?php esc_html_e( 'Mouse pads', 'gridline-club' ); ?></a><a href="<?php echo esc_url( home_url( '/product-category/small-gifts/' ) ); ?>"><?php esc_html_e( 'Keychains', 'gridline-club' ); ?></a></div>
+		<div class="gl-search-suggestions"><span><?php esc_html_e( 'Popular:', 'gridline-club' ); ?></span><a href="<?php echo esc_url( home_url( '/?s=radio&post_type=product' ) ); ?>"><?php esc_html_e( 'Radio quotes', 'gridline-club' ); ?></a><a href="<?php echo esc_url( home_url( '/product-category/radio-apparel/' ) ); ?>"><?php esc_html_e( 'Apparel', 'gridline-club' ); ?></a><a href="<?php echo esc_url( home_url( '/product-category/race-day-gear/' ) ); ?>"><?php esc_html_e( 'Race day gear', 'gridline-club' ); ?></a></div>
 	</div>
 </div>

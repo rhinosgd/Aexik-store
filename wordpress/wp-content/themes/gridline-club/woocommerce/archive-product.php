@@ -10,8 +10,8 @@ get_header( 'shop' );
 do_action( 'woocommerce_before_main_content' );
 
 $is_category = is_product_category();
-$title       = $is_category ? single_term_title( '', false ) : __( 'Race Control Collection', 'gridline-club' );
-$description = $is_category ? term_description() : __( 'Original Formula 1 moment designs on desk mats, mouse pads, keychains, and practical race-day goods. Choose a surface, read the story, and check the product details before ordering.', 'gridline-club' );
+$title       = $is_category ? single_term_title( '', false ) : __( 'The Radio Grid', 'gridline-club' );
+$description = $is_category ? term_description() : __( 'Authorized team radio phrases on apparel, drinkware, desk gear, small gifts, and lightweight trackside essentials—all under $50.', 'gridline-club' );
 ?>
 <header class="gl-shop-hero">
 	<p class="gl-eyebrow"><?php echo $is_category ? esc_html__( 'Collection', 'gridline-club' ) : esc_html__( 'Shop all', 'gridline-club' ); ?> / <?php echo esc_html( wp_count_posts( 'product' )->publish ); ?> <?php esc_html_e( 'objects', 'gridline-club' ); ?></p>
@@ -19,9 +19,11 @@ $description = $is_category ? term_description() : __( 'Original Formula 1 momen
 	<?php if ( $description ) : ?><div class="gl-shop-intro"><?php echo wp_kses_post( $description ); ?></div><?php endif; ?>
 	<div class="gl-shop-links" aria-label="<?php esc_attr_e( 'Shop categories', 'gridline-club' ); ?>">
 		<a<?php echo ! $is_category ? ' class="is-current"' : ''; ?> href="<?php echo esc_url( wc_get_page_permalink( 'shop' ) ); ?>"><?php esc_html_e( 'All products', 'gridline-club' ); ?></a>
-		<a href="<?php echo esc_url( home_url( '/product-category/desk-tech/' ) ); ?>"><?php esc_html_e( 'Desk mats', 'gridline-club' ); ?></a>
-		<a href="<?php echo esc_url( home_url( '/product-category/desk-tech/' ) ); ?>"><?php esc_html_e( 'Mouse pads', 'gridline-club' ); ?></a>
-		<a href="<?php echo esc_url( home_url( '/product-category/small-gifts/' ) ); ?>"><?php esc_html_e( 'Keychains', 'gridline-club' ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/product-category/radio-apparel/' ) ); ?>"><?php esc_html_e( 'Apparel', 'gridline-club' ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/product-category/drinkware/' ) ); ?>"><?php esc_html_e( 'Drinkware', 'gridline-club' ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/product-category/desk-tech/' ) ); ?>"><?php esc_html_e( 'Desk gear', 'gridline-club' ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/product-category/race-day-gear/' ) ); ?>"><?php esc_html_e( 'Trackside', 'gridline-club' ); ?></a>
+		<a href="<?php echo esc_url( home_url( '/product-category/small-gifts/' ) ); ?>"><?php esc_html_e( 'Accessories', 'gridline-club' ); ?></a>
 	</div>
 </header>
 

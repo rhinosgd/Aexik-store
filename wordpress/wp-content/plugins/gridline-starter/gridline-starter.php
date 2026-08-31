@@ -2,7 +2,7 @@
 /**
  * Plugin Name: APEXIK Starter Content
  * Description: Installs the APEXIK pages, seven original radio-culture products, SEO metadata, categories, and menus.
- * Version: 1.8.2
+ * Version: 1.8.1
  * Requires Plugins: woocommerce
  * Requires PHP: 8.1
  * Text Domain: gridline-starter
@@ -118,7 +118,7 @@ function gridline_starter_category_descriptions() {
 		'Radio Apparel'   => 'Team radio quote polos, hoodies, and streetwear built around authorized phrases and Apexik-original signal graphics.',
 		'Drinkware'       => 'Motorsport quote mugs and insulated tumblers designed for early starts, travel days, and full race weekends.',
 		'Small Gifts'     => 'Affordable team radio gifts under $30, including key tags, stickers, watch accessories, and desk notes.',
-		'Desk & Tech'     => 'Formula 1 desk mats and mouse pads built from authorized race moments, with practical Size and Style choices for race-fan workstations.',
+		'Desk & Tech'     => 'Pit-wall-inspired desk mats, mouse pads, watch accessories, and useful objects for race fans.',
 		'Race Day Gear'   => 'Lightweight trackside and watch-party gear for more comfortable race weekends.',
 		'Radio Unfiltered'=> 'The bluntest authorized radio phrases, presented with censored storefront wording and original Apexik graphics.',
 		'Gifts'           => 'Independent motorsport gifts for race fans, from drinkware to practical trackside gear.',

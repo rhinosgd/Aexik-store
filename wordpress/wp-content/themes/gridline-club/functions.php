@@ -9,7 +9,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'GRIDLINE_VERSION', '1.9.0' );
+define( 'GRIDLINE_VERSION', '1.8.0' );
 
 function gridline_setup() {
 	load_theme_textdomain( 'gridline-club', get_template_directory() . '/languages' );
@@ -95,7 +95,7 @@ function gridline_meta_description() {
 		$product = wc_get_product( get_queried_object_id() );
 		$description = gridline_product_meta( get_queried_object_id(), 'meta_description', $product ? wp_strip_all_tags( $product->get_short_description() ) : '' );
 	} elseif ( ! $description && function_exists( 'is_shop' ) && is_shop() ) {
-		$description = __( 'Shop Formula 1-inspired desk mats, mouse pads and keychains built from race strategy, team radio and defining moments.', 'gridline-club' );
+		$description = __( 'Shop independent team radio quote apparel, drinkware, desk gear, small gifts, and practical trackside essentials from APEXIK.', 'gridline-club' );
 	} elseif ( ! $description && function_exists( 'is_product_category' ) && is_product_category() ) {
 		$description = wp_strip_all_tags( term_description() );
 	} elseif ( ! $description && is_singular() ) {
@@ -172,7 +172,7 @@ function gridline_document_title( $title ) {
 		if ( $custom ) return $custom;
 	}
 	if ( is_front_page() ) {
-		return __( 'Formula 1 Desk Mats, Mouse Pads & Keychains | APEXIK', 'gridline-club' );
+		return __( 'Team Radio Gifts, Apparel & Motorsport Desk Gear | APEXIK', 'gridline-club' );
 	}
 	if ( is_singular( 'product' ) ) {
 		return gridline_product_meta( get_queried_object_id(), 'seo_title', $title );
@@ -382,9 +382,8 @@ function gridline_default_menu() {
 	$shop = function_exists( 'wc_get_page_permalink' ) ? wc_get_page_permalink( 'shop' ) : home_url( '/shop/' );
 	$items = array(
 		'Shop' => $shop,
-		'Desk Mats' => home_url( '/products/desk-mats/' ),
-		'Mouse Pads' => home_url( '/products/desk-mats/' ),
-		'Keychains' => home_url( '/product-category/small-gifts/' ),
+		'New Drops' => add_query_arg( 'orderby', 'date', $shop ),
+		'Gifts' => home_url( '/product-category/gifts/' ),
 		'Our Story' => home_url( '/about/' ),
 	);
 	echo '<ul class="gl-nav-list">';
