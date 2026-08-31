@@ -2,7 +2,7 @@
 /**
  * Plugin Name: APEXIK SEO & GEO Architecture
  * Description: Rights-aware content entities, commercial landing pages, SEO controls, internal links and structured data for APEXIK.
- * Version: 1.0.0
+ * Version: 1.1.0
  * Requires PHP: 8.1
  */
 
@@ -109,6 +109,11 @@ function apexik_landing_shortcode( $atts ) {
 	$pages = apexik_landing_definitions();
 	if ( ! isset( $pages[ $key ] ) ) return '';
 	$d = $pages[ $key ];
+	if ( 'desk-mats' === $key ) {
+		$d['answer'] = 'Formula 1 desk mats and mouse pads turn authorized race moments into original, usable surfaces for work, gaming, and sim-racing setups.';
+		$d['sections'][0] = array( 'Choose Size and Style before checkout', 'Select the surface size that fits your desk, then choose the edge style shown on the product page. Both options are required for a desk mat or mouse pad variation.' );
+		$d['sections'][1] = array( 'A complete race moment, not a plain quote', 'Each design combines the authorized radio, strategy, or incident reference with original waveform, timing, and signal graphics. Product specifications stay separate from the story so shoppers can compare the surface with confidence.' );
+	}
 	ob_start();
 	?>
 	<div class="apexik-seo-landing">
@@ -207,10 +212,10 @@ function apexik_install_seo_architecture() {
 	$menu = wp_get_nav_menu_object( 'APEXIK Primary' );
 	if ( $menu ) {
 		foreach ( (array) wp_get_nav_menu_items( $menu->term_id ) as $item ) wp_delete_post( $item->ID, true );
-		$nav = array( 'Shop' => home_url( '/shop/' ), 'Team Radio' => get_permalink( $ids['team-radio'] ), 'Desk Mats' => get_permalink( $ids['desk-mats'] ), 'Gifts Under $50' => get_permalink( $ids['motorsport-gifts-under-50'] ), 'Our Story' => home_url( '/about/' ) );
+		$nav = array( 'Shop' => home_url( '/shop/' ), 'Desk Mats' => get_permalink( $ids['desk-mats'] ), 'Mouse Pads' => get_permalink( $ids['desk-mats'] ), 'Keychains' => home_url( '/product-category/small-gifts/' ), 'Team Radio' => get_permalink( $ids['team-radio'] ), 'Our Story' => home_url( '/about/' ) );
 		foreach ( $nav as $label => $url ) wp_update_nav_menu_item( $menu->term_id, 0, array( 'menu-item-title' => $label, 'menu-item-url' => $url, 'menu-item-type' => 'custom', 'menu-item-status' => 'publish' ) );
 	}
-	flush_rewrite_rules(); update_option( 'apexik_seo_geo_version', '1.0.0' ); return $ids;
+		flush_rewrite_rules(); update_option( 'apexik_seo_geo_version', '1.1.0' ); return $ids;
 }
 
 function apexik_page_schema() {

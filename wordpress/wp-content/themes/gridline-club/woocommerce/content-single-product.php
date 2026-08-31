@@ -35,6 +35,8 @@ $thumbs      = $is_water ? array(
 ) : array();
 $variation_attribute_names = $product->is_type( 'variable' ) ? array_map( 'sanitize_title', array_keys( $product->get_variation_attributes() ) ) : array();
 $has_surface_configuration = in_array( 'size', $variation_attribute_names, true ) && in_array( 'style', $variation_attribute_names, true );
+$size_guide_url = $has_surface_configuration ? home_url( '/guides/racing-desk-mat-size-guide/' ) : home_url( '/size-guide/' );
+$size_guide_label = $has_surface_configuration ? __( 'Surface size guide', 'gridline-club' ) : __( 'Size guide', 'gridline-club' );
 ?>
 <?php do_action( 'woocommerce_before_single_product' ); ?>
 <article id="product-<?php the_ID(); ?>" <?php wc_product_class( 'gl-product-detail gl-rs-product', $product ); ?>>
