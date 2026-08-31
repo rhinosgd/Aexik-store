@@ -33,8 +33,6 @@ $thumbs      = $is_water ? array(
 	$theme . '/assets/images/products/apexik-water-polo-detail-wave.png',
 	$theme . '/assets/images/products/apexik-water-polo-detail-back.png',
 ) : array();
-$variation_attribute_names = $product->is_type( 'variable' ) ? array_map( 'sanitize_title', array_keys( $product->get_variation_attributes() ) ) : array();
-$has_surface_configuration = in_array( 'size', $variation_attribute_names, true ) && in_array( 'style', $variation_attribute_names, true );
 ?>
 <?php do_action( 'woocommerce_before_single_product' ); ?>
 <article id="product-<?php the_ID(); ?>" <?php wc_product_class( 'gl-product-detail gl-rs-product', $product ); ?>>
@@ -58,7 +56,7 @@ $has_surface_configuration = in_array( 'size', $variation_attribute_names, true 
 			<div class="gl-rs-price"><?php woocommerce_template_single_price(); ?></div>
 			<?php if ( $subtitle ) : ?><p class="gl-product-subtitle"><?php echo esc_html( $subtitle ); ?></p><?php endif; ?>
 			<div class="gl-rs-rule"></div>
-			<div class="gl-add-to-cart-wrap"><?php if ( $is_coming_soon ) : ?><div class="stock out-of-stock"><?php esc_html_e( 'Coming soon — join the launch list for release details.', 'gridline-club' ); ?></div><a class="single_add_to_cart_button button alt" href="<?php echo esc_url( home_url( '/#newsletter' ) ); ?>"><?php esc_html_e( 'Get launch updates', 'gridline-club' ); ?></a><?php else : ?><?php if ( $has_surface_configuration ) : ?><p class="gl-configuration-heading"><?php esc_html_e( 'Choose size & style', 'gridline-club' ); ?><span><?php esc_html_e( 'Both options are required before adding to cart.', 'gridline-club' ); ?></span></p><?php endif; ?><?php woocommerce_template_single_add_to_cart(); ?><?php endif; ?><?php if ( $product->is_type( 'variable' ) ) : ?><a class="gl-size-guide-link" href="<?php echo esc_url( home_url( '/size-guide/' ) ); ?>"><i class="fa-solid fa-shirt" aria-hidden="true"></i> <?php esc_html_e( 'Size guide', 'gridline-club' ); ?></a><?php endif; ?></div>
+			<div class="gl-add-to-cart-wrap"><?php if ( $is_coming_soon ) : ?><div class="stock out-of-stock"><?php esc_html_e( 'Coming soon — join the launch list for release details.', 'gridline-club' ); ?></div><a class="single_add_to_cart_button button alt" href="<?php echo esc_url( home_url( '/#newsletter' ) ); ?>"><?php esc_html_e( 'Get launch updates', 'gridline-club' ); ?></a><?php else : ?><?php woocommerce_template_single_add_to_cart(); ?><?php endif; ?><?php if ( $product->is_type( 'variable' ) ) : ?><a class="gl-size-guide-link" href="<?php echo esc_url( home_url( '/size-guide/' ) ); ?>"><i class="fa-solid fa-shirt" aria-hidden="true"></i> <?php esc_html_e( 'Size guide', 'gridline-club' ); ?></a><?php endif; ?></div>
 			<div class="gl-purchase-assurance"><div><i class="fa-solid fa-truck-fast" aria-hidden="true"></i><p><strong><?php esc_html_e( 'Free US shipping over $75', 'gridline-club' ); ?></strong><?php echo esc_html( $dispatch ); ?></p></div><div><i class="fa-solid fa-arrow-rotate-left" aria-hidden="true"></i><p><strong><?php esc_html_e( 'Easy 30-day returns', 'gridline-club' ); ?></strong><?php esc_html_e( 'Unused items can be sent back within 30 days.', 'gridline-club' ); ?></p></div></div>
 			<div class="gl-product-meta"><?php woocommerce_template_single_meta(); ?></div>
 		</div>

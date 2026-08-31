@@ -2,7 +2,7 @@
 /**
  * Plugin Name: APEXIK Starter Content
  * Description: Installs the APEXIK pages, seven original radio-culture products, SEO metadata, categories, and menus.
- * Version: 1.8.1
+ * Version: 1.7.0
  * Requires Plugins: woocommerce
  * Requires PHP: 8.1
  * Text Domain: gridline-starter
@@ -247,7 +247,7 @@ function gridline_starter_products() {
 			),
 		),
 		array(
-			'slug' => 'change-your-fxxking-car-desk-mat', 'name' => 'Change Your FXXking Car Desk Mat', 'price' => '39', 'image' => 'apexik-unfiltered-desk-mat.jpg', 'categories' => array( 'Desk & Tech', 'Radio Unfiltered' ), 'options' => array( 'Size' => array( '800 x 300 mm', '900 x 400 mm', '1000 x 500 mm' ), 'Style' => array( 'Standard Edge', 'Stitched Edge' ) ),
+			'slug' => 'change-your-fxxking-car-desk-mat', 'name' => 'Change Your FXXking Car Desk Mat', 'price' => '39', 'image' => 'apexik-unfiltered-desk-mat.jpg', 'categories' => array( 'Desk & Tech', 'Radio Unfiltered' ),
 			'short' => 'An oversized stitched desk mat for the most direct radio instruction in the archive.',
 			'description' => 'Extended motorsport desk mat featuring CHANGE YOUR FXXKING CAR across an original waveform, strategy grid, and unfiltered radio interface. Sized for keyboard, mouse, and race control arguments.',
 			'meta' => array(
@@ -486,7 +486,7 @@ function gridline_starter_install() {
 			wp_update_post( array( 'ID' => $legacy->ID, 'post_status' => 'draft' ) );
 		}
 	}
-	update_option( 'gridline_starter_version', '1.8.1' );
+	update_option( 'gridline_starter_version', '1.8.0' );
 	return true;
 }
 
@@ -510,40 +510,22 @@ function gridline_starter_configure_variations( $product, $options, $price ) {
 
 	$existing_variations = array();
 	foreach ( $product->get_children() as $variation_id ) {
-		$variation  = new WC_Product_Variation( $variation_id );
-		$attributes = $variation->get_attributes();
-		if ( 1 === count( $attributes ) && isset( $attributes['size'] ) && isset( $options['Style'][0] ) ) {
-			$attributes['style'] = $options['Style'][0];
-			$variation->set_attributes( $attributes );
-			$variation->save();
+		$size = get_post_meta( $variation_id, '_gridline_starter_size', true );
+		if ( $size ) {
+			$existing_variations[ $size ] = $variation_id;
 		}
-		ksort( $attributes );
-		$existing_variations[ wp_json_encode( $attributes ) ] = $variation_id;
 	}
-
-	$combinations = array( array() );
-	foreach ( $options as $name => $values ) {
-		$next = array();
-		foreach ( $combinations as $combination ) {
-			foreach ( $values as $value ) {
-				$next[] = array_merge( $combination, array( sanitize_title( $name ) => $value ) );
-			}
-		}
-		$combinations = $next;
-	}
-
-	foreach ( $combinations as $attributes ) {
-		ksort( $attributes );
-		$variation_key = wp_json_encode( $attributes );
-		$variation = isset( $existing_variations[ $variation_key ] ) ? new WC_Product_Variation( $existing_variations[ $variation_key ] ) : new WC_Product_Variation();
+	$sizes = isset( $options['Size'] ) ? $options['Size'] : array();
+	foreach ( $sizes as $size ) {
+		$variation = isset( $existing_variations[ $size ] ) ? new WC_Product_Variation( $existing_variations[ $size ] ) : new WC_Product_Variation();
 		$variation->set_parent_id( $product->get_id() );
-		$variation->set_attributes( $attributes );
+		$variation->set_attributes( array( 'size' => $size ) );
 		$variation->set_regular_price( $price );
 		$variation->set_price( $price );
 		$variation->set_status( 'publish' );
 		$variation->set_stock_status( 'instock' );
 		$variation_id = $variation->save();
-		update_post_meta( $variation_id, '_gridline_starter_attributes', wp_json_encode( $attributes ) );
+		update_post_meta( $variation_id, '_gridline_starter_size', $size );
 	}
 	WC_Product_Variable::sync( $product->get_id() );
 	wc_delete_product_transients( $product->get_id() );
