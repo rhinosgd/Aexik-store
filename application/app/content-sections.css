@@ -1,0 +1,51 @@
+/* Editorial storytelling panels: motorsport image, with contrast protected by the overlay. */
+.race-layout {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+  align-items: stretch;
+}
+.race-art {
+  min-height: 520px;
+  background-image:
+    linear-gradient(90deg, rgba(4, 9, 15, .84), rgba(4, 9, 15, .38) 72%),
+    linear-gradient(0deg, rgba(4, 9, 15, .68), transparent 66%),
+    url("/race-pitlane-hero.png");
+  background-position: center;
+  background-size: cover;
+  text-shadow: 0 3px 24px rgba(0, 0, 0, .55);
+}
+.race-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 0;
+}
+.race-list button {
+  flex: 1 1 0;
+  min-height: 132px;
+}
+.about-grid > div:first-child {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 560px;
+  padding: clamp(28px, 4vw, 60px);
+  background-image:
+    linear-gradient(90deg, rgba(5, 15, 28, .88), rgba(7, 22, 40, .56)),
+    linear-gradient(0deg, rgba(5, 15, 28, .45), transparent 70%),
+    url("/race-strategy-room.png");
+  background-position: center;
+  background-size: cover;
+}
+.about-grid > div:last-child {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+}
+@media (max-width: 720px) {
+  .race-layout { grid-template-columns: 1fr; }
+  .race-art { min-height: 340px; }
+  .race-list button { min-height: 116px; }
+  .about-grid > div:first-child { grid-column: 1; grid-row: auto; min-height: 420px; }
+  .about-grid > div:last-child { grid-column: 1; grid-row: auto; }
+}

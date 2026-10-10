@@ -4,6 +4,7 @@ This private repository stores the reusable WordPress/WooCommerce build for APEX
 
 ## What Is Included
 
+- `application/` - the latest APEXIK storefront and custom operations admin source (Next/Vinext, D1/R2-ready).
 - `wordpress/wp-content/themes/gridline-club/` - the custom APEXIK WooCommerce theme.
 - `wordpress/wp-content/plugins/gridline-starter/` - starter content, products, admin hub, demo assets, and store setup helpers.
 - `wordpress/wp-content/plugins/apexik-seo-geo/` - SEO/GEO content structure, landing pages, schema, and metadata tools.

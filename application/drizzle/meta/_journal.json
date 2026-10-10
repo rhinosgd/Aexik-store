@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1790869808776,
+      "tag": "0000_jittery_the_order",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1790910000000,
+      "tag": "0002_customer_messages",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+"use client";
+
+import { useState } from "react";
+
+export default function AdminImagesPage() {
+  const [key, setKey] = useState(""); const [message, setMessage] = useState("Choose a correctly sized image.");
+  async function upload(event: React.FormEvent<HTMLFormElement>) { event.preventDefault(); const form = new FormData(event.currentTarget); const response = await fetch("/api/admin/images", { method: "POST", headers: { "x-apexik-admin-key": key }, body: form }); const data = await response.json() as { error?: string; image?: { src: string } }; setMessage(response.ok ? `Uploaded: ${data.image?.src}` : data.error ?? "Upload failed."); }
+  return <main className="admin-page"><div className="admin-shell"><p className="eyebrow">APEXIK / IMAGE LIBRARY</p><h1>Upload the proof.</h1><p className="admin-intro">Local uploads are stored in the IMAGES R2 binding and recorded in the shared product image library.</p><label className="admin-key-field">Admin key<input type="password" value={key} onChange={(event) => setKey(event.target.value)} placeholder="APEXIK_ADMIN_KEY" /></label><p className="admin-message">{message}</p><form className="admin-panel admin-editor" onSubmit={upload}><label>Product ID<input name="productId" required placeholder="product id" /></label><label>Image kind<select name="kind" defaultValue="product"><option value="product">Product — 1600 × 1600</option><option value="moment">Race Moment — 1600 × 900</option><option value="banner">Banner — 2200 × 800</option></select></label><div className="admin-two"><label>Width<input name="width" type="number" required placeholder="1600" /></label><label>Height<input name="height" type="number" required placeholder="1600" /></label></div><label>Alt text<input name="alt" placeholder="Image description" /></label><label>File<input name="file" type="file" accept="image/*" required /></label><button className="add-button" type="submit">Upload image <span>→</span></button></form></div></main>;
+}
